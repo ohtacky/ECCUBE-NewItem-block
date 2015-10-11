@@ -23,8 +23,7 @@ class Version20150911190000 extends AbstractMigration
 
     public function down(Schema $schema)
     {
-        //アンインストール時のDBブロックの削除処理
-        //アンインストール時のtwigの削除処理
+      $this->addSql('DELETE FROM dtb_block WHERE file_name = "newitem" ');
     }
 
     public function postUp(Schema $schema)

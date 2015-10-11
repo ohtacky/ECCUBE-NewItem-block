@@ -32,6 +32,9 @@ class PluginManager extends AbstractPluginManager
 
     public function uninstall($config, $app)
     {
+      unlink($app['config']['root_dir']. '/app/template/default/Block/newitem.twig');
+
+      $this->migrationSchema($app, __DIR__ . '/Migration', $config['code'], 0);
     }
 
     public function enable($config, $app)
