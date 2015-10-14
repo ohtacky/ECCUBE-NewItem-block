@@ -2,6 +2,8 @@
 
 ECCUBE3のブロックに新商品を追加します。
 
+対応ver.3.0.4
+
 ![サンプル画像](https://github.com/ohtacky/ECCUBE-NewItem/raw/image/1.png)
 
 ### How to install
