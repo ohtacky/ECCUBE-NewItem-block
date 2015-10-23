@@ -43,6 +43,21 @@ class PluginManager extends AbstractPluginManager
 
     public function disable($config, $app)
     {
+      $qb = $app['orm.em']->createQueryBuilder();
+      $qb->select("c")
+         ->from("Eccube\\Entity\\Block", "c")
+         ->where("c.file_name = :file_name")
+         ->setParameter("file_name", "newitem");
+      $query = $qb->getQuery();
+      $block = $query->getSingleResult();
+      $blockId = $block->getId();
+
+      $app['orm.em']->createQueryBuilder()
+          ->delete("Eccube\\Entity\\BlockPosition", "d")
+          ->where("d.block_id = :block_id")
+          ->setParameter("block_id", $blockId)
+          ->getQuery()
+          ->execute();
     }
 
     public function update($config, $app)
