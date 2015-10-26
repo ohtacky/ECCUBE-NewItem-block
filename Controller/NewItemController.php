@@ -20,7 +20,8 @@ class NewItemController
   {
     $newItemList = $app['orm.em']->getRepository('\Eccube\Entity\Product')
           ->findBy(
-              array(),
+              array('Status' => 1,
+                    'del_flg' => 0),
               array('id' => 'DESC')
           );
 
