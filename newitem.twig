@@ -12,7 +12,7 @@
 <div class="item_gallery">
     <h4>新商品</h4>
     <ul class="row">
-      {% for newItem in newItemList | slice(0,8) %}
+      {% for newItem in newItemList  %}
         <div class="col-sm-3 col-xs-6">
             <div class="pickup_item">
                 <a href="{{ url('product_detail', {'id': newItem.id}) }}">
