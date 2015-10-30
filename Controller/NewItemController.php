@@ -22,7 +22,9 @@ class NewItemController
           ->findBy(
               array('Status' => 1,
                     'del_flg' => 0),
-              array('id' => 'DESC')
+              array('id' => 'DESC'),
+              8,
+              0
           );
 
       return $app->render('Block/newitem.twig', array(
