@@ -23,7 +23,8 @@ class Version20150911190000 extends AbstractMigration
 
     public function down(Schema $schema)
     {
-      $this->addSql('DELETE FROM dtb_block WHERE file_name = "newitem" ');
+      $this->connection->delete('dtb_block', array('file_name' => 'newitem'));
+
     }
 
     public function postUp(Schema $schema)
@@ -31,6 +32,12 @@ class Version20150911190000 extends AbstractMigration
 
         $app = new \Eccube\Application();
         $app->boot();
+
+        $statement = $this->connection->prepare('SELECT block_id FROM dtb_block');
+        $statement->execute();
+        $blockId = $statement->fetchAll();
+
+        $blockIdNumber = count($blockId) + 1;
         $deviceTypeId = '10';
         $blockName = '新商品';
         $fileName = 'newitem';
@@ -38,8 +45,8 @@ class Version20150911190000 extends AbstractMigration
         $logicFlg = '1';
         $deletableFlg = '1';
         $insert = "INSERT INTO dtb_block(
-                            device_type_id, block_name, file_name, create_date, update_date, logic_flg, deletable_flg)
-                    VALUES ('$deviceTypeId', '$blockName', '$fileName', '$datetime', '$datetime', '$logicFlg', '$deletableFlg'
+                            block_id, device_type_id, block_name, file_name, create_date, update_date, logic_flg, deletable_flg)
+                    VALUES ('$blockIdNumber', '$deviceTypeId', '$blockName', '$fileName', '$datetime', '$datetime', '$logicFlg', '$deletableFlg'
                             );";
         $this->connection->executeUpdate($insert);
 
