@@ -21,14 +21,14 @@
                       <dt class="item_name">{{newItem.name}}</dt>
                       <dd class="item_price">
                       {% if newItem.hasProductClass -%}
-                          {% if newItem.getPrice01Min == newItem.getPrice01Max %}
-                          <p class="normal_price"><span class="price01_default">{{ newItem.getPrice01IncTaxMin }}</span><span class="small">円</span></p>
-                          {% elseif newItem.getPrice01Min is not null and newItem.getPrice01Max is not null %}
-                          <p class="normal_price"><span class="price01_default">{{ newItem.getPrice01IncTaxMin }}</span> ～ <span class="price01_default">{{ newItem.getPrice01IncTaxMax }}</span><span class="small">円</span></p>
+                          {% if newItem.getPrice02Min == newItem.getPrice02Max %}
+                          <p class="normal_price"><span class="price01_default">{{ newItem.getPrice02IncTaxMin }}</span><span class="small">円</span></p>
+                          {% elseif newItem.getPrice02Min is not null and newItem.getPrice02Max is not null %}
+                          <p class="normal_price"><span class="price01_default">{{ newItem.getPrice02IncTaxMin }}</span> ～ <span class="price01_default">{{ newItem.getPrice02IncTaxMax }}</span><span class="small">円</span></p>
                           {% endif %}
                       {% else -%}
-                          {% if newItem.getPrice01Max is not null %}
-                          <p class="normal_price"><span class="price01_default">{{ newItem.getPrice01IncTaxMin }}</span><span class="small">円</span></p>
+                          {% if newItem.getPrice02Max is not null %}
+                          <p class="normal_price"><span class="price01_default">{{ newItem.getPrice02IncTaxMin }}</span><span class="small">円</span></p>
                           {% endif %}
                       {% endif -%}
                     </dl>
